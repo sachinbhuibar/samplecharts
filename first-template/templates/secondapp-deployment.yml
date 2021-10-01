@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appNames.secondAppName  }}-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appNames.secondAppName  }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appNames.secondAppName  }}
+    spec:
+      containers:
+        - name: {{ .Values.appNames.secondAppName  }}
+          image: {{ .Values.appImages.repository  }}/{{ .Values.appNames.secondAppName  }}
+          ports:
+            - containerPort: {{ .Values.appImages.secondAppPort  }}

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appNames.secondAppName }}-cluster-ip-service
+spec:
+  type: {{ .Values.appServices.secondAppServiceType }}
+  selector:
+    app: {{ .Values.appNames.secondAppName }}
+  ports:
+    - port: {{ .Values.appServices.secondAppServicePort }}
+      targetPort: {{ .Values.appImages.secondAppPort }}

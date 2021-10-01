@@ -1,0 +1,21 @@
+
+appNames:
+  firstAppName: firstapp
+  secondAppName: secondapp
+
+appImages:
+  repository: sachinbhuibar
+  firstAppImage: firstapp
+  secondAppImage: secondapp
+  firstAppPort: 3000
+  secondAppPort: 4000
+
+appServices:
+  firstAppServicePort: 3000
+  secondAppServicePort: 4000
+  firstAppServiceType: ClusterIP
+  secondAppServiceType: ClusterIP
+
+ingress:
+  firstAppPathType: Prefix
+  secondAppPathType: Prefix

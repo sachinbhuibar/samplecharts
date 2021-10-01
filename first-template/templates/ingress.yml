@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /{{ .Values.appNames.firstAppName  }}
+            pathType: {{ .Values.ingress.firstAppPathType}}
+            backend:
+              service:
+                name: {{ .Values.appNames.firstAppName }}-cluster-ip-service
+                port:
+                  number: {{ .Values.appServices.firstAppServicePort }}
+    - http:
+        paths:
+          - path: /{{ .Values.appNames.secondAppName  }}
+            pathType: {{ .Values.ingress.secondAppPathType }}
+            backend:
+              service:
+                name: {{ .Values.appNames.secondAppName  }}-cluster-ip-service
+                port:
+                  number: {{ .Values.appServices.secondAppServicePort }}
